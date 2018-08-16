@@ -81,6 +81,12 @@ class Homestead
       v.cpus = settings['cpus'] ||= 1
     end
 
+    # Configure A Few libvirt Settings
+    config.vm.provider "libvirt" do |kvm|
+      kvm.memory = settings["memory"] ||= "2048"
+      kvm.cpus = settings["cpus"] ||= "1"
+    end
+
     # Standardize Ports Naming Schema
     if settings.has_key?('ports')
       settings['ports'].each do |port|
